@@ -19,7 +19,7 @@ This portfolio is created as part of my university applications to present my wo
 
 ## Access
 You can view the portfolio website here:
-[Add your GitHub Pages link here]
+[https://github.com/Ashudani/asim-portfolio]
 
 ---
 
