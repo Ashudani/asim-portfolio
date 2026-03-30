@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asim Ali Abbas — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0f0d;
+  --surface: #0f1a16;
+  --card: #131f1a;
+  --border: #1e3028;
+  --green: #2dce89;
+  --green-dim: #1a7a52;
+  --green-pale: #0d2e1f;
+  --gold: #f0c040;
+  --gold-dim: #8a6e20;
+  --text: #e8f0ec;
+  --muted: #6b8a78;
+  --accent2: #5de3c8;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.4;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--green-dim); border-radius: 2px; }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10,15,13,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.1em;
+  color: var(--green);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82em;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--green); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.3;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,206,137,0.08) 0%, transparent 70%);
+  top: -200px; left: -200px;
+  pointer-events: none;
+}
+
+.hero-glow2 {
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(93,227,200,0.05) 0%, transparent 70%);
+  bottom: -100px; right: 0;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  max-width: 900px;
+}
+
+.hero-tag {
+  display: inline-block;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.72em;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--green);
+  background: var(--green-pale);
+  border: 1px solid var(--green-dim);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+  animation: fadeUp 0.6s ease both;
+}
+
+.hero-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(3.5em, 8vw, 6.5em);
+  font-weight: 400;
+  line-height: 1.0;
+  color: var(--text);
+  margin-bottom: 8px;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+
+.hero-name span {
+  color: var(--green);
+  font-style: italic;
+}
+
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1em, 2vw, 1.3em);
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+
+.hero-desc {
+  font-size: 1.05em;
+  color: #a0b8ac;
+  max-width: 600px;
+  line-height: 1.8;
+  margin-bottom: 44px;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.6s 0.4s ease both;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: var(--green);
+  color: #0a0f0d;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.85em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: transparent;
+  color: var(--green);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.85em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid var(--green-dim);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--green); background: var(--green-pale); transform: translateY(-2px); }
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  margin-top: 60px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+  animation: fadeUp 0.6s 0.5s ease both;
+}
+
+.stat-item { text-align: left; }
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.2em;
+  font-weight: 800;
+  color: var(--green);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.78em;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ── SECTION BASE ── */
+section {
+  padding: 100px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.72em;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.8em, 4vw, 2.8em);
+  color: var(--text);
+  margin-bottom: 48px;
+  line-height: 1.2;
+}
+
+.section-title em { color: var(--green); font-style: italic; }
+
+/* ── ABOUT ── */
+#about {
+  border-top: 1px solid var(--border);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.about-text p {
+  color: #a0b8ac;
+  margin-bottom: 20px;
+  font-size: 1em;
+  line-height: 1.9;
+}
+
+.about-text p strong { color: var(--green); font-weight: 500; }
+
+.about-highlights {
+  display: grid;
+  gap: 16px;
+}
+
+.highlight-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  padding: 20px 24px;
+  border-radius: 0 8px 8px 0;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.highlight-card:hover { border-left-color: var(--accent2); transform: translateX(4px); }
+
+.highlight-card h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85em;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.highlight-card p { font-size: 0.82em; color: var(--muted); line-height: 1.5; margin: 0; }
+
+/* ── PROJECTS ── */
+#projects { border-top: 1px solid var(--border); }
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s, border-color 0.25s;
+}
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--accent2));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.project-card:hover { transform: translateY(-6px); border-color: var(--green-dim); }
+.project-card:hover::before { transform: scaleX(1); }
+
+.project-icon {
+  width: 48px; height: 48px;
+  background: var(--green-pale);
+  border: 1px solid var(--green-dim);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4em;
+  margin-bottom: 20px;
+}
+
+.project-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.project-card p {
+  font-size: 0.88em;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.tech-tag {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.68em;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--green);
+  background: var(--green-pale);
+  border: 1px solid var(--green-dim);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--green);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.project-link:hover { color: var(--accent2); }
+
+/* ── ACTIVITIES ── */
+#activities { border-top: 1px solid var(--border); }
+
+.activities-list { display: grid; gap: 2px; }
+
+.activity-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: 24px;
+  align-items: start;
+  transition: border-color 0.2s, background 0.2s;
+  margin-bottom: 12px;
+}
+.activity-item:hover { border-color: var(--green-dim); background: #111a15; }
+
+.activity-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.7em;
+  font-weight: 800;
+  color: var(--green);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding-top: 4px;
+}
+
+.activity-body h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95em;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.activity-body p {
+  font-size: 0.85em;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.activity-badge {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.66em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.badge-award { background: rgba(240,192,64,0.12); color: var(--gold); border: 1px solid var(--gold-dim); }
+.badge-service { background: rgba(45,206,137,0.1); color: var(--green); border: 1px solid var(--green-dim); }
+.badge-leader { background: rgba(93,227,200,0.1); color: var(--accent2); border: 1px solid rgba(93,227,200,0.3); }
+.badge-learn { background: rgba(138,110,32,0.15); color: #d4a840; border: 1px solid rgba(240,192,64,0.2); }
+
+/* ── SKILLS ── */
+#skills { border-top: 1px solid var(--border); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.skill-group {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.skill-group h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.skill-name {
+  font-size: 0.86em;
+  color: #b8d0c4;
+}
+
+.skill-bar-wrap {
+  width: 100px;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skill-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green), var(--accent2));
+  border-radius: 2px;
+  animation: growBar 1.2s ease both;
+  animation-play-state: paused;
+}
+
+.skill-bar.animate { animation-play-state: running; }
+
+@keyframes growBar {
+  from { width: 0 !important; }
+}
+
+/* ── CERTIFICATES ── */
+#certificates { border-top: 1px solid var(--border); }
+
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.cert-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.cert-card:hover { border-color: var(--green-dim); transform: translateY(-3px); }
+
+.cert-org {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.65em;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.cert-name {
+  font-size: 0.9em;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.cert-year {
+  font-size: 0.76em;
+  color: var(--muted);
+}
+
+.cert-icon { font-size: 1.4em; }
+
+/* ── SPORT ── */
+#sport { border-top: 1px solid var(--border); }
+
+.sport-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.sport-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 30px 28px;
+  text-align: center;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.sport-card:hover { transform: translateY(-4px); border-color: var(--gold-dim); }
+
+.sport-emoji { font-size: 2.4em; margin-bottom: 12px; display: block; }
+
+.sport-card h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.88em;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.sport-card p { font-size: 0.8em; color: var(--muted); line-height: 1.6; }
+
+.trophy {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.7em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(240,192,64,0.08);
+  border: 1px solid var(--gold-dim);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 48px;
+  text-align: center;
+}
+
+.footer-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.8em;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.footer-sub {
+  font-size: 0.82em;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--green); }
+
+.footer-copy {
+  margin-top: 32px;
+  font-size: 0.75em;
+  color: #3a5040;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  #hero { padding: 100px 24px 60px; }
+  section { padding: 70px 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-stats { gap: 28px; flex-wrap: wrap; }
+  .activity-item { grid-template-columns: 1fr; gap: 12px; }
+  .activity-num { display: none; }
+  footer { padding: 40px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Asim Ali Abbas</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#activities">Activities</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certificates">Certificates</a></li>
+    <li><a href="#sport">Sport</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">📍 Gilgit-Baltistan, Pakistan</div>
+    <h1 class="hero-name">Asim <span>Ali</span><br>Abbas</h1>
+    <p class="hero-title">Computer Science Aspirant · Developer · Leader</p>
+    <p class="hero-desc">
+      A Grade 12 student from Aga Khan Higher Secondary School, Gilgit — building real-world software, leading teams, championing climate action, and representing my community on every stage I can reach.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">↓ View Projects</a>
+      <a href="https://github.com/Ashudani" target="_blank" class="btn-secondary">⬡ GitHub</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">19+</div>
+        <div class="stat-label">Certificates</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">57h</div>
+        <div class="stat-label">Community Service</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3×</div>
+        <div class="stat-label">Football Champion</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">GitHub Projects</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Who I Am</div>
+  <h2 class="section-title">Driven by curiosity,<br><em>defined by action</em></h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        I'm <strong>Asim Ali Abbas</strong>, a Grade 12 Computer Science student at Aga Khan Higher Secondary School, Gilgit. I'm applying to <strong>Habib University</strong> to pursue a degree in Computer Science — because I believe technology, applied thoughtfully, can solve real problems for real communities.
+      </p>
+      <p>
+        From writing C++ programs that solve mathematical equations to building school management systems, from leading my school's ICT Club to tutoring juniors in Mathematics for 57 hours, I look for every opportunity to <strong>learn by doing</strong> and <strong>give back by teaching</strong>.
+      </p>
+      <p>
+        I completed <strong>Google's AI Essentials Specialization</strong> on my own time — five courses, fully self-directed. I attended a climate leadership bootcamp funded by the <strong>Canada Fund for Local Initiatives</strong>. I earned an <strong>Honourable Mention at MUN</strong>. I won football championships. Every experience has made me sharper, more resilient, and more committed to using education as a force for change.
+      </p>
+    </div>
+    <div class="about-highlights reveal">
+      <div class="highlight-card">
+        <h4>🏫 School</h4>
+        <p>Aga Khan Higher Secondary School, Gilgit — Grade 12, Computer Science</p>
+      </div>
+      <div class="highlight-card">
+        <h4>🎯 Goal</h4>
+        <p>BS Computer Science at Habib University, Karachi</p>
+      </div>
+      <div class="highlight-card">
+        <h4>💡 ICT Club Head</h4>
+        <p>Led the ICT Club 2024–25: Python lessons, Tech Fair, creative banners, school IT management</p>
+      </div>
+      <div class="highlight-card">
+        <h4>🌿 Climate Leader</h4>
+        <p>ECO Leaders Bootcamp — Booni Environmental Academy, Chitral (Canada Fund / Accountability Lab Pakistan)</p>
+      </div>
+      <div class="highlight-card">
+        <h4>🤖 AI Certified</h4>
+        <p>Google AI Essentials Specialization — 5 courses completed independently on Coursera</p>
+      </div>
+      <div class="highlight-card">
+        <h4>📍 From</h4>
+        <p>Gilgit-Baltistan — the roof of the world, where resourcefulness is not optional</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Code I've Built</div>
+  <h2 class="section-title">GitHub <em>Projects</em></h2>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-icon">⚙️</div>
+      <h3>Quadratic Equation Solver</h3>
+      <p>
+        A C++ console application that solves quadratic equations ax² + bx + c = 0 step by step — handling both real and complex/imaginary roots with color-coded terminal output for clarity.
+      </p>
+      <div class="tech-tags">
+        <span class="tech-tag">C++</span>
+        <span class="tech-tag">Algebra</span>
+        <span class="tech-tag">CLI</span>
+        <span class="tech-tag">Complex Numbers</span>
+      </div>
+      <a href="https://github.com/Ashudani/quadratic-solver" target="_blank" class="project-link">
+        View on GitHub →
+      </a>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🏫</div>
+      <h3>School Outpass Management System</h3>
+      <p>
+        A real-world school administration tool to digitize and manage student outpass requests — replacing manual paperwork with a streamlined digital workflow for students and teachers.
+      </p>
+      <div class="tech-tags">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">System Design</span>
+        <span class="tech-tag">School Admin</span>
+        <span class="tech-tag">Automation</span>
+      </div>
+      <a href="https://github.com/Ashudani/Outpass-System" target="_blank" class="project-link">
+        View on GitHub →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section id="activities">
+  <div class="section-label">What I've Done</div>
+  <h2 class="section-title">Meta-curricular <em>Experience</em></h2>
+  <div class="activities-list">
+
+    <div class="activity-item reveal">
+      <div class="activity-num">01</div>
+      <div class="activity-body">
+        <h4>Head of ICT Club — AKHSS Gilgit</h4>
+        <p>Led the school's ICT Club through the full 2024–25 academic year. Initiated Python programming lessons for all members, co-organized the Annual Science & Tech Fair (November 2024), managed IT aspects of student week, and designed event banners. Kept a team of students motivated and productive all year.</p>
+      </div>
+      <span class="activity-badge badge-leader">Leader</span>
+    </div>
+
+    <div class="activity-item reveal">
+      <div class="activity-num">02</div>
+      <div class="activity-body">
+        <h4>Student Tutor — Mathematics, 57 Hours</h4>
+        <p>Volunteered 57 hours tutoring junior students in Mathematics through AKHSS's Academic Excellence Committee programme. Planned lessons, adapted to different learning styles, and tracked each student's progress. Formally recognized by the school Principal (December 2024).</p>
+      </div>
+      <span class="activity-badge badge-service">Community Service</span>
+    </div>
+
+    <div class="activity-item reveal">
+      <div class="activity-num">03</div>
+      <div class="activity-body">
+        <h4>Delegate — AKHSS Gilgit MUN 2024 · 🏅 Honourable Mention</h4>
+        <p>Participated in the two-day Model United Nations conference at AKHSS Gilgit (November 16–17, 2024). Represented an assigned country, drafted position papers, delivered floor speeches, and negotiated resolutions. Awarded an Honourable Mention for outstanding committee performance.</p>
+      </div>
+      <span class="activity-badge badge-award">Honourable Mention</span>
+    </div>
+
+    <div class="activity-item reveal">
+      <div class="activity-num">04</div>
+      <div class="activity-body">
+        <h4>ECO Leaders Bootcamp — Booni Environmental Academy, Chitral</h4>
+        <p>Attended a 3-day residential leadership bootcamp on climate change mitigation, organized by Booni Environmental Academy and funded by the Canada Fund for Local Initiatives (CFLI) and Accountability Lab Pakistan. Collaborated with students from across Pakistan on environmental solutions.</p>
+      </div>
+      <span class="activity-badge badge-service">Climate Action</span>
+    </div>
+
+    <div class="activity-item reveal">
+      <div class="activity-num">05</div>
+      <div class="activity-body">
+        <h4>Google AI Essentials Specialization — Coursera (5 Courses)</h4>
+        <p>Self-directed completion of Google's AI Essentials Specialization on Coursera: Introduction to AI, Maximize Productivity with AI Tools, Discover the Art of Prompting, Use AI Responsibly, and Stay Ahead of the AI Curve. Completed October 2025 — entirely on personal initiative outside school hours.</p>
+      </div>
+      <span class="activity-badge badge-learn">Self-Learning</span>
+    </div>
+
+    <div class="activity-item reveal">
+      <div class="activity-num">06</div>
+      <div class="activity-body">
+        <h4>Converse Programme — English Communication, AKHSS Gilgit</h4>
+        <p>Active participant in the school's structured English communication programme. Delivered extempore speeches, led group discussions on current topics, and presented analytical book and film reviews — building fluency, confidence, and critical expression in English.</p>
+      </div>
+      <span class="activity-badge badge-leader">Co-curricular</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">What I Know</div>
+  <h2 class="section-title">Skills &amp; <em>Competencies</em></h2>
+  <div class="skills-grid">
+
+    <div class="skill-group reveal">
+      <h4>💻 Programming</h4>
+      <div class="skill-item"><span class="skill-name">C++</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Python</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Excel / Spreadsheets</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div></div>
+    </div>
+
+    <div class="skill-group reveal">
+      <h4>🤖 AI & Technology</h4>
+      <div class="skill-item"><span class="skill-name">Prompt Engineering</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">AI Tools & Productivity</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Responsible AI Use</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
+    </div>
+
+    <div class="skill-group reveal">
+      <h4>🗣️ Communication</h4>
+      <div class="skill-item"><span class="skill-name">Public Speaking</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Debate & MUN</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:72%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">English Communication</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
+    </div>
+
+    <div class="skill-group reveal">
+      <h4>🧭 Leadership & Service</h4>
+      <div class="skill-item"><span class="skill-name">Team Leadership</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Peer Tutoring / Mentoring</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Event Management</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+  <div class="section-label">Recognition</div>
+  <h2 class="section-title">Certificates &amp; <em>Awards</em></h2>
+  <div class="certs-grid">
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">🏅</span>
+      <div class="cert-org">AKHSS Gilgit MUN</div>
+      <div class="cert-name">Honourable Mention Award</div>
+      <div class="cert-year">November 2024</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">🤖</span>
+      <div class="cert-org">Google / Coursera</div>
+      <div class="cert-name">Google AI Essentials Specialization (5 Courses)</div>
+      <div class="cert-year">October 2025</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">📜</span>
+      <div class="cert-org">AKHSS Gilgit — Principal</div>
+      <div class="cert-name">Certificate of Appreciation — Head of ICT Club</div>
+      <div class="cert-year">December 2024</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">📚</span>
+      <div class="cert-org">AKHSS Gilgit — Principal</div>
+      <div class="cert-name">Certificate of Appreciation — Student Tutor (57 hrs Math)</div>
+      <div class="cert-year">December 2024</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">🌿</span>
+      <div class="cert-org">Accountability Lab Pakistan / CFLI</div>
+      <div class="cert-name">ECO Leaders Climate Leadership Bootcamp</div>
+      <div class="cert-year">2024</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">🏆</span>
+      <div class="cert-org">Seven Hands / Rotaract Club Gilgit</div>
+      <div class="cert-name">Winner — 1st Dilyab Inter-School Football Championship</div>
+      <div class="cert-year">December 2022</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">⚽</span>
+      <div class="cert-org">AKHSS Gilgit</div>
+      <div class="cert-name">Winner — College Level Football Competition</div>
+      <div class="cert-year">November 2023</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">🎙️</span>
+      <div class="cert-org">AKHSS Gilgit — Principal</div>
+      <div class="cert-name">Certificate of Appreciation — Converse Programme</div>
+      <div class="cert-year">October 2024</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">🌐</span>
+      <div class="cert-org">AKHSS Gilgit MUN</div>
+      <div class="cert-name">Certificate of Participation — MUN 2024</div>
+      <div class="cert-year">November 2024</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">🏟️</span>
+      <div class="cert-org">Aga Khan Youth & Sports Board</div>
+      <div class="cert-name">Certificate of Participation — Josh Games 2023</div>
+      <div class="cert-year">2023</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">📐</span>
+      <div class="cert-org">ICAP (CA Pakistan)</div>
+      <div class="cert-name">2nd National Maths Championship 2024</div>
+      <div class="cert-year">2024</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">📊</span>
+      <div class="cert-org">Teach for Gilgit Baltistan</div>
+      <div class="cert-name">PAMIR Mathematics Olympiad (HSSC)</div>
+      <div class="cert-year">2024</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">📖</span>
+      <div class="cert-org">ITREB for Pakistan</div>
+      <div class="cert-name">IQRA Diamond Jubilee Qirat Competition</div>
+      <div class="cert-year">2017</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">⛺</span>
+      <div class="cert-org">STEP Department</div>
+      <div class="cert-name">STEP Camp — The Quran and its Interpretations</div>
+      <div class="cert-year">July 2023</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">🥾</span>
+      <div class="cert-org">Rowshan Scout Group</div>
+      <div class="cert-name">2nd Snow Hike Participation</div>
+      <div class="cert-year">January 2020</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">✍️</span>
+      <div class="cert-org">OEC Junior Wing</div>
+      <div class="cert-name">Write-out Loud Creative Writing Competition</div>
+      <div class="cert-year">October 2024</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">🚀</span>
+      <div class="cert-org">TechScape Private Limited</div>
+      <div class="cert-name">Ambassador — Outstanding Participation</div>
+      <div class="cert-year">2024–2025</div>
+    </div>
+
+    <div class="cert-card reveal">
+      <span class="cert-icon">📈</span>
+      <div class="cert-org">Udemy</div>
+      <div class="cert-name">Useful Excel for Beginners (100% Complete)</div>
+      <div class="cert-year">2024</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SPORT -->
+<section id="sport">
+  <div class="section-label">On the Field</div>
+  <h2 class="section-title">Football <em>Achievements</em></h2>
+  <div class="sport-grid">
+
+    <div class="sport-card reveal">
+      <span class="sport-emoji">🏆</span>
+      <h4>Inter-School Football Championship</h4>
+      <p>Won the 1st Dilyab Inter-School Football Championship 2022, organized by Seven Hands & Rotaract Club Gilgit at Aga Khan Gymkhana. AKHSS Gilgit won among all schools in the Gilgit region.</p>
+      <div><span class="trophy">🥇 Winner</span></div>
+    </div>
+
+    <div class="sport-card reveal">
+      <span class="sport-emoji">⚽</span>
+      <h4>Annual Sports Week Football</h4>
+      <p>Our team won the College Level Football Competition at AKHSS Gilgit's Annual Sports Week, held November 18, 2023 — recognized with a Certificate of Achievement by the school Principal.</p>
+      <div><span class="trophy">🥇 Winner</span></div>
+    </div>
+
+    <div class="sport-card reveal">
+      <span class="sport-emoji">🎽</span>
+      <h4>Josh Games 2023 — National Football</h4>
+      <p>Participated in Josh Games 2023, a national-level football tournament organized by the Aga Khan Youth & Sports Board (AKYSB) Gilgit, competing against teams from across the region.</p>
+      <div><span class="trophy">🏅 National Participant</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Asim Ali Abbas</div>
+  <div class="footer-sub">Grade 12 · AKHSS Gilgit · CS Aspirant · Habib University Applicant</div>
+  <div class="footer-links">
+    <a href="https://github.com/Ashudani" target="_blank">GitHub</a>
+    <a href="https://coursera.org/verify/specialization/FO89XXB3JKUA" target="_blank">Google AI Certificate</a>
+    <a href="https://coursera.org/verify/V7JTJWG9QQTX" target="_blank">Intro to AI Certificate</a>
+    <a href="#hero">↑ Back to Top</a>
+  </div>
+  <div class="footer-copy">Built with purpose · Gilgit-Baltistan, Pakistan · 2025</div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => {
+        e.target.classList.add('visible');
+        // Animate skill bars inside this element
+        e.target.querySelectorAll('.skill-bar').forEach(b => b.classList.add('animate'));
+      }, i * 60);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Skill bars in view
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.skill-bar').forEach(b => b.classList.add('animate'));
+      barObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.skill-group').forEach(el => barObserver.observe(el));
+
+// Smooth active nav highlight
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--green)' : '';
+  });
+});
+</script>
+</body>
+</html>
